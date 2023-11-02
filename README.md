@@ -8,8 +8,6 @@
 
 <div>
     <img alt="cpp" src="https://img.shields.io/badge/cpp-11-%2300599C">
-</div>
-<div>
     <img alt="platform" src="https://img.shields.io/badge/platform-Linux%20-blueviolet">
 </div>
 <div>
