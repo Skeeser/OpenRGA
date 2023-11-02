@@ -59,6 +59,7 @@ Linux aarch64
 
 ### 依赖检查
 - cmake
+- gtest (测试)
 - [librga](https://github.com/airockchip/librga)
 
 <br>
@@ -68,6 +69,11 @@ Linux aarch64
 ```shell
 cd ~
 git clone https://github.com/Skeeser/OpenRGA.git
+```
+
+#### 一行构建
+```shell
+cd ~/OpenRGA && sudo chmod +x ./build.sh && ./build.sh
 ```
 
 <br>
@@ -81,14 +87,18 @@ cmake ..
 make
 ```
 
-### 运行
+### 安装
 
-<!-- 描述如何运行该项目 -->
+```shell
+sudo make install
+```
+
 <br>
 
 ## 使用指南
+- 可以参考test文件夹中的测试文件和CMakeList.txt, 查看使用示例  
+- 相关使用的函数API在(函数API)[doc/function_api.md]
 
-<!-- 描述如何使用该项目 -->
 <br>
 
 ## 如何贡献
@@ -103,8 +113,8 @@ keeser
 
 <br>
 
-## TODO
-- [ ] imread
+## 现在功能已经支持
+- [ ] RGA::resize 图像放缩
 
 <br>
 

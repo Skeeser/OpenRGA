@@ -1,6 +1,27 @@
-## RGA
 
-### 参考网站
+## gtest
+### 安装
+```shell
+cd ~
+git clone https://github.com/google/googletest.git
+sudo apt-get install cmake
+cd ~/googletest/
+mkdir build
+cd build/
+cmake ..
+make
+sudo make install
+```
+ 
+<br>
+
+
+
+
+
+
+
+## 参考网站
 
 [RK3588 RGA 图像操作-CSDN博客](https://blog.csdn.net/weixin_46935110/article/details/129844176)
 

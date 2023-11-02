@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.2)
  
 # project name，指定项目的名称，一般和项目的文件夹名称对应
-PROJECT(OpenRGA)
+PROJECT(OpenRGATest)
  
 SET(CMAKE_CXX_STANDARD 11) # 设置c++版本为c11 
 
@@ -27,16 +27,15 @@ INCLUDE_DIRECTORIES(
 )
  
 # source directory，源文件目录
-AUX_SOURCE_DIRECTORY(src DIR_SRCS)
+AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR}/test DIR_SRCS)
  
 # set environment variable，设置环境变量，编译用到的源文件全部都要放到这里，否则编译能够通过，但是执行 的时候会出现各种问题，比如"symbol lookup error xxxxx , undefined symbol"
 SET(SRC_CODE
  ${DIR_SRCS}
 )
 
-# add library
-ADD_LIBRARY(${PROJECT_NAME} SHARED ${SRC_CODE})
 
+ADD_EXECUTABLE(${PROJECT_NAME} ${SRC_CODE})
 
 
 # 链接libfuse3库和pthread库
@@ -52,19 +51,11 @@ ADD_LIBRARY(${PROJECT_NAME} SHARED ${SRC_CODE})
 # target_include_directories(${LIB_FUC} PUBLIC ${FUSE_INCLUDE_DIRS})
 # target_link_libraries(${LIB_FUC} PUBLIC ${FUSE_LIBRARIES})
 
-# find_package(Threads REQUIRED)
-# target_link_libraries(${EXE_INIT} PUBLIC Threads::Threads)
-# target_link_libraries(${LIB_FUC} PUBLIC Threads::Threads)
+find_package(OpenRGA REQUIRED)
+target_link_libraries(${PROJECT_NAME} PUBLIC OpenRGA)
+
 
 # target_link_libraries(${EXE_FS} ${LIB_FUC} )
 
 # find_package(GTest CONFIG REQUIRED)
 # target_link_libraries(${EXE_TEST} PUBLIC GTest::gtest GTest::gtest_main ${LIB_FUC} )
-
-
-# 想要让用户install安装
-install(TARGETS ${PROJECT_NAME}
-     EXPORT ${PROJECT_NAME}Targets 
-     LIBRARY DESTINATION /usr/local/lib  # 动态库安装路径
-     PUBLIC_HEADER DESTINATION /usr/local/include  # 头文件安装路径
-)
