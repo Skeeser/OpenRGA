@@ -7,11 +7,16 @@
 #include <time.h>
 #include <dlfcn.h>
 // #include "RgaApi.h"
+#include <string>
+#include <iostream>
+#include <stdexcept>
+#include <opencv2/opencv.hpp>
 
 #include "rga.h"
 #include "RgaUtils.h"
 #include "im2d.hpp"
 // #include "utils.h"
+#include "Mat.hpp"
 
 #ifdef __cplusplus
 extern "C"
@@ -20,8 +25,6 @@ extern "C"
 
     namespace RGA
     {
-
-        void resize(rga_buffer_t &src, rga_buffer_t &dst, const cv::Mat &image, cv::Mat &resized_image, const cv::Size &target_size);
 
     }
 
