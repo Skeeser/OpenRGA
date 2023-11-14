@@ -12,10 +12,10 @@
 #include "RgaUtils.h"
 #include "im2d.hpp"
 // #include "utils.h"
+#include "Mat.hpp"
+#include "Size.hpp"
 
 namespace RGA
 {
-
-    void resize(rga_buffer_t &src, rga_buffer_t &dst, const RGA::Mat &image, RGA::Mat &resized_image, const cv::Size &target_size);
-
+    void resize(const Mat &src, Mat &dst, const Size &target_size);
 }

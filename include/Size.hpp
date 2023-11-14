@@ -12,6 +12,12 @@
 namespace RGA
 {
 
+    struct MatSize
+    {
+        int width;
+        int height;
+    };
+
     class Size
     {
     public:
@@ -25,9 +31,12 @@ namespace RGA
             return *this;
         }
 
-        std::pair<int, int> getSize() const
+        struct MatSize getSize() const
         {
-            return std::make_pair(width_, height_);
+            struct MatSize ms;
+            ms.height = height_;
+            ms.width = width_;
+            return ms;
         }
 
         ~Size()
