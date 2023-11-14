@@ -18,21 +18,12 @@
 // #include "utils.h"
 #include "Mat.hpp"
 
-#ifdef __cplusplus
-extern "C"
+/*
+实现过于难了, 能力有限, 暂停开发
+*/
+
+namespace RGA
 {
-#endif
 
-    /*
-    实现过于难了, 能力有限, 暂停开发
-    */
-
-    namespace RGA
-    {
-
-        RGA::Mat imread(const std::string &filename);
-    }
-
-#ifdef __cplusplus
+    RGA::Mat imread(const std::string &filename);
 }
-#endif

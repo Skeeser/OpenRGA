@@ -27,7 +27,7 @@ endif()
 # )
  
 # source directory，源文件目录
-AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR}/test DIR_SRCS)
+AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR} DIR_SRCS)
  
 # set environment variable，设置环境变量，编译用到的源文件全部都要放到这里，否则编译能够通过，但是执行 的时候会出现各种问题，比如"symbol lookup error xxxxx , undefined symbol"
 SET(SRC_CODE
@@ -44,7 +44,7 @@ ADD_EXECUTABLE(${PROJECT_NAME} ${SRC_CODE})
 # pkg_search_module(FUSE REQUIRED fuse3)
 
 find_package(OpenRGA REQUIRED)
-target_link_libraries(${PROJECT_NAME} PUBLIC OpenRGA)
+target_link_libraries(${PROJECT_NAME} PUBLIC OpenRGA::OpenRGA)
 
 
 find_package(GTest CONFIG REQUIRED)

@@ -60,10 +60,10 @@ target_link_libraries(${PROJECT_NAME} PUBLIC ${RGA_LIBRARIES})
 install(TARGETS ${PROJECT_NAME}
     EXPORT ${PROJECT_NAME}Targets 
     LIBRARY DESTINATION /usr/local/lib  # 动态库安装路径
-    PUBLIC_HEADER DESTINATION /usr/local/include  # 头文件安装路径
+    PUBLIC_HEADER DESTINATION /usr/local/include/${PROJECT_NAME}  # 头文件安装路径
 )
 
-install(DIRECTORY include/ DESTINATION include)
+install(DIRECTORY include/ DESTINATION include/${PROJECT_NAME})
 
 install(EXPORT ${PROJECT_NAME}Targets
     FILE ${PROJECT_NAME}Targets.cmake

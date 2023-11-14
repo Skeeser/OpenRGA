@@ -18,16 +18,7 @@
 // #include "utils.h"
 #include "Mat.hpp"
 
-#ifdef __cplusplus
-extern "C"
+namespace RGA
 {
-#endif
 
-    namespace RGA
-    {
-
-    }
-
-#ifdef __cplusplus
 }
-#endif
