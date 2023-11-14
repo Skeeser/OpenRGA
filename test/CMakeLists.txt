@@ -4,8 +4,8 @@ cmake_minimum_required(VERSION 3.2)
 # project name，指定项目的名称，一般和项目的文件夹名称对应
 PROJECT(OpenRGATest)
  
-SET(CMAKE_CXX_STANDARD 11) # 设置c++版本为c11 
-
+SET(CMAKE_CXX_STANDARD 14) # 设置c++版本为c11 
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 定义一个选项，用于控制生成何种类型的Makefile
 option(USE_DEBUG "Build with debug flags" ON)
@@ -61,6 +61,10 @@ ADD_EXECUTABLE(${PROJECT_NAME} ${SRC_CODE})
 find_package(OpenRGA REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC OpenRGA::OpenRGA)
 
+# find_package(Threads REQUIRED)
+# target_link_libraries(${PROJECT_NAME} PUBLIC Threads::Threads)
 
 # find_package(GTest CONFIG REQUIRED)
-# target_link_libraries(${PROJECT_NAME} PUBLIC GTest::gtest GTest::gtest_main)
+# # GTest 的头文件
+# include_directories(${GTEST_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PUBLIC gtest gtest_main pthread)
