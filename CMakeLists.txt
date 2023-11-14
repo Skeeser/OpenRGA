@@ -48,18 +48,26 @@ ADD_LIBRARY(${PROJECT_NAME} SHARED ${SRC_CODE})
 # target_link_libraries(${EXE_INIT} PUBLIC ${FUSE_LIBRARIES})
 
 
-
-# target_include_directories(${LIB_FUC} PUBLIC ${FUSE_INCLUDE_DIRS})
-# target_link_libraries(${LIB_FUC} PUBLIC ${FUSE_LIBRARIES})
-
 # find_package(Threads REQUIRED)
 # target_link_libraries(${EXE_INIT} PUBLIC Threads::Threads)
 # target_link_libraries(${LIB_FUC} PUBLIC Threads::Threads)
 
 # target_link_libraries(${EXE_FS} ${LIB_FUC} )
 
-# find_package(GTest CONFIG REQUIRED)
-# target_link_libraries(${EXE_TEST} PUBLIC GTest::gtest GTest::gtest_main ${LIB_FUC} )
+# 查找OpenCV包
+find_package(OpenCV REQUIRED)
+include_directories(${OpenCV_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${OpenCV_LIBRARIES})
+
+# 查找librga包
+find_package(PkgConfig)
+# pkg_search_module(自定义名  必需项  查找库名)
+
+pkg_search_module(RGA REQUIRED librga)
+set (RGA_INCLUDE_DIRS /usr/include/rga/)
+target_include_directories(${PROJECT_NAME} PUBLIC ${RGA_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} PUBLIC ${RGA_LIBRARIES})
+message("1:${RGA_INCLUDE_DIRS} 2:${RGA_LIBRARIES}")
 
 
 # 想要让用户install安装
@@ -68,3 +76,5 @@ install(TARGETS ${PROJECT_NAME}
      LIBRARY DESTINATION /usr/local/lib  # 动态库安装路径
      PUBLIC_HEADER DESTINATION /usr/local/include  # 头文件安装路径
 )
+
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)

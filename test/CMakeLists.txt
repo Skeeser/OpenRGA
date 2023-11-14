@@ -43,14 +43,6 @@ ADD_EXECUTABLE(${PROJECT_NAME} ${SRC_CODE})
 # # pkg_search_module(自定义名  必需项  查找库名)
 # pkg_search_module(FUSE REQUIRED fuse3)
 
-# target_include_directories(${EXE_INIT} PUBLIC ${FUSE_INCLUDE_DIRS})
-# target_link_libraries(${EXE_INIT} PUBLIC ${FUSE_LIBRARIES})
-
-
-
-# target_include_directories(${LIB_FUC} PUBLIC ${FUSE_INCLUDE_DIRS})
-# target_link_libraries(${LIB_FUC} PUBLIC ${FUSE_LIBRARIES})
-
 find_package(OpenRGA REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC OpenRGA)
 
