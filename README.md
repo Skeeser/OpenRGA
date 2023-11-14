@@ -59,6 +59,7 @@ Linux aarch64
 
 ### 依赖检查
 - cmake
+- opencv
 - gtest (测试)
 - [librga](https://github.com/airockchip/librga)
 
