@@ -25,7 +25,7 @@ namespace RGA
         {
         }
 
-        Mat(const cv::Mat &src_mat)
+        Mat(const cv::Mat &src_mat) explicit
         {
             src_width_ = src_mat.cols;
             src_height_ = src_mat.rows;

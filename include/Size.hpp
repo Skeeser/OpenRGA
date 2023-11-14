@@ -15,21 +15,19 @@ namespace RGA
     class Size
     {
     public:
-        Size(const int width, const int height) : src_width(width),
+        Size(const int width, const int height) : width_(width), height_(height)
         {
-            src_width = src_mat.cols;
-            src_height = src_mat.rows;
-            judgeFormat(src_mat);
-            empty_flag = src_mat.empty();
-            src_buf_size = src_width * src_height * get_bpp_from_format(src_format);
-            src_buf = new char[src_buf_size];
-            memcpy(src_buf, src_mat.data, src_buf_size);
         }
 
         Size &operator=(const Size &cpy_size)
         {
             // todo: 防止自我赋值
             return *this;
+        }
+
+        std::pair<int, int> getSize() const
+        {
+            return std::make_pair(width_, height_);
         }
 
         ~Size()
@@ -42,8 +40,8 @@ namespace RGA
         }
 
     private:
-        int src_width;
-        int src_height;
+        int width_;
+        int height_;
     };
 
 }
