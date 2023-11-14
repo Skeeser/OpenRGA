@@ -89,7 +89,7 @@ make
 ```
 
 ### 安装
-
+在build文件夹中执行
 ```shell
 sudo make install
 ```

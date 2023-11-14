@@ -1,13 +1,12 @@
 extern "C"
 {
+#include <OpenRGA/imread.h>
 }
 #include "gtest/gtest.h"
 
-// 初始化测试
-TEST(GFS, init)
+// 初始化读入图片
+TEST(OpenRGA, imread)
 {
-    void *ret = GFS_init((fuse_conn_info *)NULL, (fuse_config *)NULL);
-    ASSERT_EQ(NULL, ret);
 }
 
 int main(int argc, char *argv[])

@@ -22,9 +22,9 @@ endif()
 
 
 # head file path，头文件目录
-INCLUDE_DIRECTORIES(
- include
-)
+# INCLUDE_DIRECTORIES(
+#   include
+# )
  
 # source directory，源文件目录
 AUX_SOURCE_DIRECTORY(${CMAKE_SOURCE_DIR}/test DIR_SRCS)
@@ -47,7 +47,5 @@ find_package(OpenRGA REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC OpenRGA)
 
 
-# target_link_libraries(${EXE_FS} ${LIB_FUC} )
-
-# find_package(GTest CONFIG REQUIRED)
-# target_link_libraries(${EXE_TEST} PUBLIC GTest::gtest GTest::gtest_main ${LIB_FUC} )
+find_package(GTest CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PUBLIC GTest::gtest GTest::gtest_main ${LIB_FUC} )

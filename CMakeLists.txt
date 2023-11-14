@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.2)
  
 # project name，指定项目的名称，一般和项目的文件夹名称对应
-PROJECT(OpenRGA)
+PROJECT(OpenRGA VERSION 1.0)
  
 SET(CMAKE_CXX_STANDARD 11) # 设置c++版本为c11 
 
@@ -26,6 +26,8 @@ INCLUDE_DIRECTORIES(
  include
 )
  
+#---------------------------libOpenRga------------------------------#
+
 # source directory，源文件目录
 AUX_SOURCE_DIRECTORY(src DIR_SRCS)
  
@@ -37,22 +39,6 @@ SET(SRC_CODE
 # add library
 ADD_LIBRARY(${PROJECT_NAME} SHARED ${SRC_CODE})
 
-
-
-# 链接libfuse3库和pthread库
-# find_package(PkgConfig)
-# # pkg_search_module(自定义名  必需项  查找库名)
-# pkg_search_module(FUSE REQUIRED fuse3)
-
-# target_include_directories(${EXE_INIT} PUBLIC ${FUSE_INCLUDE_DIRS})
-# target_link_libraries(${EXE_INIT} PUBLIC ${FUSE_LIBRARIES})
-
-
-# find_package(Threads REQUIRED)
-# target_link_libraries(${EXE_INIT} PUBLIC Threads::Threads)
-# target_link_libraries(${LIB_FUC} PUBLIC Threads::Threads)
-
-# target_link_libraries(${EXE_FS} ${LIB_FUC} )
 
 # 查找OpenCV包
 find_package(OpenCV REQUIRED)
@@ -67,14 +53,43 @@ pkg_search_module(RGA REQUIRED librga)
 set (RGA_INCLUDE_DIRS /usr/include/rga/)
 target_include_directories(${PROJECT_NAME} PUBLIC ${RGA_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME} PUBLIC ${RGA_LIBRARIES})
-message("1:${RGA_INCLUDE_DIRS} 2:${RGA_LIBRARIES}")
+
 
 
 # 想要让用户install安装
 install(TARGETS ${PROJECT_NAME}
-     EXPORT ${PROJECT_NAME}Targets 
-     LIBRARY DESTINATION /usr/local/lib  # 动态库安装路径
-     PUBLIC_HEADER DESTINATION /usr/local/include  # 头文件安装路径
+    EXPORT ${PROJECT_NAME}Targets 
+    LIBRARY DESTINATION /usr/local/lib  # 动态库安装路径
+    PUBLIC_HEADER DESTINATION /usr/local/include  # 头文件安装路径
 )
 
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
+install(DIRECTORY include/ DESTINATION include)
+
+install(EXPORT ${PROJECT_NAME}Targets
+    FILE ${PROJECT_NAME}Targets.cmake
+    NAMESPACE ${PROJECT_NAME}::
+    DESTINATION lib/cmake/${PROJECT_NAME}
+    )
+
+
+include(CMakePackageConfigHelpers)
+
+write_basic_package_version_file(
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+    VERSION ${PACKAGE_VERSION}
+    COMPATIBILITY AnyNewerVersion
+)
+
+configure_package_config_file(
+    "${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}Config.cmake.in"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    INSTALL_DESTINATION lib/cmake/${PROJECT_NAME}Library
+)
+
+# message("1:${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}Config.cmake.in 2:${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}LibraryConfig.cmake")
+
+install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+    "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
+    DESTINATION lib/cmake/${PROJECT_NAME}
+)
