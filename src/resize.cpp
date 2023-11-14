@@ -35,8 +35,7 @@ namespace RGA
             fprintf(stderr, "rga check error! %s", imStrError((IM_STATUS)ret));
             return;
         }
-
-        IM_STATUS STATUS = imresize(src, dst);
+        imresize(src, dst);
         return;
     }
 
