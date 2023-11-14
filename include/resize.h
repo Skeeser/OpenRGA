@@ -16,6 +16,6 @@
 namespace RGA
 {
 
-    // void resize(rga_buffer_t &src, rga_buffer_t &dst, const cv::Mat &image, cv::Mat &resized_image, const cv::Size &target_size);
+    void resize(rga_buffer_t &src, rga_buffer_t &dst, const RGA::Mat &image, RGA::Mat &resized_image, const cv::Size &target_size);
 
 }

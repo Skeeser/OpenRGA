@@ -43,9 +43,24 @@ ADD_EXECUTABLE(${PROJECT_NAME} ${SRC_CODE})
 # # pkg_search_module(自定义名  必需项  查找库名)
 # pkg_search_module(FUSE REQUIRED fuse3)
 
+# todo 怎么不用指定就能安装
+# find_package(OpenCV REQUIRED)
+# include_directories(${OpenCV_INCLUDE_DIRS})
+# target_link_libraries(${PROJECT_NAME} PUBLIC ${OpenCV_LIBRARIES})
+
+# # 查找librga包
+# find_package(PkgConfig)
+# # pkg_search_module(自定义名  必需项  查找库名)
+
+# pkg_search_module(RGA REQUIRED librga)
+# set (RGA_INCLUDE_DIRS /usr/include/rga/)
+# target_include_directories(${PROJECT_NAME} PUBLIC ${RGA_INCLUDE_DIRS})
+# target_link_libraries(${PROJECT_NAME} PUBLIC ${RGA_LIBRARIES})
+
+
 find_package(OpenRGA REQUIRED)
 target_link_libraries(${PROJECT_NAME} PUBLIC OpenRGA::OpenRGA)
 
 
-find_package(GTest CONFIG REQUIRED)
-target_link_libraries(${PROJECT_NAME} PUBLIC GTest::gtest GTest::gtest_main ${LIB_FUC} )
+# find_package(GTest CONFIG REQUIRED)
+# target_link_libraries(${PROJECT_NAME} PUBLIC GTest::gtest GTest::gtest_main)

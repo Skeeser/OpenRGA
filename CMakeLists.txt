@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.2)
 # project name，指定项目的名称，一般和项目的文件夹名称对应
 PROJECT(OpenRGA VERSION 1.0)
  
-SET(CMAKE_CXX_STANDARD 11) # 设置c++版本为c11 
+SET(CMAKE_CXX_STANDARD 17) # 设置c++版本为c11 
 
 
 # 定义一个选项，用于控制生成何种类型的Makefile
